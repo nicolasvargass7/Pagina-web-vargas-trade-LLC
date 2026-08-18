@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+:root {
+  /* ---- Brand colors (brand-source/colores-de-la-web-original.png) ---- */
+  --color-primary: #0b2d5c; /* Azul Corporativo (oficial) */
+  --color-primary-dark: #081c3a; /* derivado, mas oscuro */
+  --color-primary-light: #163e73; /* derivado, mas claro */
+  --color-secondary: #4a4f57; /* Gris Grafito (oficial) */
+  --color-accent: #3b6ea8; /* derivado del azul corporativo, AA sobre blanco */
+  --color-accent-light: #6b95c4; /* derivado, para uso sobre fondo oscuro */
+
+  --color-bg: #ffffff; /* Blanco (oficial) */
+  --color-bg-alt: #f6f7f9; /* derivado, mas suave que el gris oficial */
+  --color-bg-muted: #e8eaed; /* Gris Claro (oficial) */
+  --color-bg-dark: #081c3a; /* derivado del azul corporativo */
+  --color-bg-dark-alt: #0f2a52; /* derivado, tarjetas sobre fondo oscuro */
+
+  --color-text: #14181c; /* derivado, casi negro para maxima legibilidad */
+  --color-text-secondary: #4a4f57; /* Gris Grafito (oficial) */
+  --color-text-muted: #6b7280; /* derivado */
+  --color-text-on-dark: #ffffff;
+  --color-text-on-dark-muted: #b9c3d1; /* derivado */
+
+  --color-border: #e8eaed;
+  --color-border-dark: rgba(255, 255, 255, 0.14);
+
+  --color-hover: #082347; /* derivado, hover del primario */
+  --color-focus: #3b6ea8;
+
+  --color-success: #1e8e5a;
+  --color-success-bg: #e9f7f0;
+  --color-error: #c0392b;
+  --color-error-bg: #fbebe9;
+
+  /* ---- Layout ---- */
+  --container-max: 1280px;
+  --header-height: 84px;
+  --header-height-mobile: 68px;
+
+  /* ---- Radii ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(11, 45, 92, 0.06);
+  --shadow-md: 0 8px 24px rgba(11, 45, 92, 0.08);
+  --shadow-lg: 0 24px 64px rgba(11, 45, 92, 0.12);
+
+  /* ---- Motion ---- */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-base: 450ms;
+  --duration-slow: 800ms;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+
+  --color-bg: var(--color-bg);
+  --color-bg-alt: var(--color-bg-alt);
+  --color-bg-muted: var(--color-bg-muted);
+  --color-bg-dark: var(--color-bg-dark);
+  --color-bg-dark-alt: var(--color-bg-dark-alt);
+
+  --color-text: var(--color-text);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-on-dark: var(--color-text-on-dark);
+  --color-text-on-dark-muted: var(--color-text-on-dark-muted);
+
+  --color-border: var(--color-border);
+  --color-border-dark: var(--color-border-dark);
+
+  --color-hover: var(--color-hover);
+  --color-focus: var(--color-focus);
+
+  --color-success: var(--color-success);
+  --color-success-bg: var(--color-success-bg);
+  --color-error: var(--color-error);
+  --color-error-bg: var(--color-error-bg);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --font-display: var(--font-plus-jakarta);
+  --font-sans: var(--font-inter);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), var(--font-sans), ui-sans-serif, sans-serif;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text-on-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container-page {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+/* Hero globe positioning: the left offset must always clear the hero text
+   column (max-w-xl inside a 1280px/2rem-padded container) while still
+   crossing into the panel by a roughly constant amount. A three-way max()
+   keeps it safe at the 1024px floor, tracks the container's centering once
+   it exceeds 1280px, and tracks the panel's own edge for a stable overlap —
+   see components/sections/hero-planet/HeroGlobePanel.tsx. */
+.hero-globe-position {
+  left: max(648px, 50vw + 8px, 70% - 90px);
+}
+
+@media (min-width: 1280px) {
+  .hero-globe-position {
+    left: max(648px, 50vw + 8px, 57% - 100px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 0;
+}
