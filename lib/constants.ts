@@ -5,12 +5,12 @@ export const COMPANY = {
   state: "Florida",
   country: "Estados Unidos",
   location: "Miami, Florida, Estados Unidos",
-  email: "informacion@vargastrade.com",
-  domain: "[AGREGAR DOMINIO]",
+  email: "informacion@vargastradellc.com",
+  domain: "vargastradellc.com",
   hours: "Lunes a viernes de 9:00 a. m. a 6:00 p. m. y sábados de 9:00 a. m. a 2:00 p. m.",
 } as const;
 
-export const SITE_URL = "https://www.vargastrade.com";
+export const SITE_URL = "https://www.vargastradellc.com";
 
 export const LEGAL_LAST_UPDATED = "15 de julio de 2026";
 
